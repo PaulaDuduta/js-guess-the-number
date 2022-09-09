@@ -11,6 +11,7 @@
     name="viewport"
     content="width=device-width, initial-scale=1.0"
   >
+  <title>Guess the number</title>
 
   <link
     rel="stylesheet"
@@ -21,54 +22,62 @@
     rel="stylesheet"
     href="style.css"
   >
-
-  <title>Guess the number</title>
 </head>
 
 <body>
-  <div>
-    <form class="container">
-      <h1 class="text-center mt-4 mb-3">Guess the number</h1>
+  <header class="title">
+    <h1>Guess the number</h1>
+  </header>
 
-      <fieldset>
-        <div class="number-form row text-center d-flex flex-row">
-          <div class="field-number my-4 text-center col-7 px-0">
-            <label
-              for="enterTheNumber"
-              class="input-number-label form-label mb-3"
-            >Enter a guess</label>
-            <input
-              type="number"
-              class="input-number form-control form-control-lg"
-              id="enterTheNumber"
-              placeholder="Enter a number between 0 and 100"
-              max="100"
-              min="0"
-            >
-          </div>
-
-          <div class="score col-5 my-4 ps-3 pe-0">
-            <p>Your score: <span></span></p>
-          </div>
+  <main class="container">
+    <form>
+      <fieldset class="form-control">
+        <div class="botMessage">
+          <p>Hi! I'm MiniBot (●'◡'●)</p>
+          <p>Let's play a <span>Guess my number</span> game!</p>
+          <p class="parent"> Here are the rules.</p>
+          <p class="rules">I'm thinking to a random number between 1 and 100. See if you can guess it in 10 turns
+            or
+            fewer. I'll tell
+            you if your guess was too high or too low.</p>
+          <p>So, whenever you're ready to smash my mind, hit the Start button! o(*^▽^*)┛</p>
         </div>
 
-        <div class="my-5 text-center">
-          <button
-            type="submit"
-            class="btn btn-md btn-outline-info"
-          >Try your guess</button>
+        <div class="inputNumberArea d-none">
+          <label for="inputArea">Enter your number</label>
+          <input
+            type="number"
+            name="inputNumber"
+            min="1"
+            max="100"
+            id="inputArea"
+          >
+        </div>
 
-          <button
-            type="reset"
-            class="btn btn-md btn-outline-secondary"
-          >Reset</button>
+        <div class="resultsMessages">
+          <p class="replayGuess"></p>
+          <p class="userAnswers"></p>
+          <p class="warningMessage"></p>
+          <p class="numberOfTurnsLeft"></p>
         </div>
       </fieldset>
+
+      <div class="buttonsArea d-none">
+        <button
+          type="submit"
+          class="submitButton btn btn-md btn-outline-info"
+        >Try your guess</button>
+
+        <button
+          type="reset"
+          class="resetButton d-none btn btn-md btn-outline-secondary"
+        >Start a new game</button>
+      </div>
     </form>
-  </div>
-
-
-  <script src="app.js"></script>
+  </main>
+  <script src="
+        app.js">
+        </script>
 </body>
 
 </html>

@@ -126,52 +126,50 @@ table {
 }
 
 /* end-css-rest */
+
 body {
   background-color: aquamarine;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  /* flex-direction: column; */
 }
 
-body > div {
+.title {
+  text-align: center;
+  margin-top: 40px;
+}
+
+body > .container {
   border: 2px solid palevioletred;
   border-radius: 10px;
   border-top-left-radius: 0;
   background-color: aliceblue;
-  height: 50%;
-  width: 50%;
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: scroll;
 }
 
-fieldset {
-  display: flex;
-  /* justify-content: center;
-  align-items: center; */
-  flex-direction: column;
+.nextButton {
+  position: fixed;
+  text-align: center;
+  right: 10px;
+  bottom: 5px;
 }
 
-.field-number {
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.userMessage {
+  text-align: right;
 }
 
-.field-number .input-number-label {
-  font-size: 18px;
+.parent {
+  font-weight: 700;
+  cursor: pointer;
 }
 
-.field-number .input-number {
-  width: 50vw;
-  padding: 0 10px 5px 5px;
-}
-
-.field-number .input-number::placeholder {
-  font-size: 10.5px;
-  line-height: 25;
-}
-
-.score {
-  font-size: 18px;
+.botMessage span {
+  font-style: italic;
 }
