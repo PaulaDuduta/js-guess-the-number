@@ -25,11 +25,22 @@
 </head>
 
 <body>
-  <header class="title">
-    <h1>Guess the number</h1>
-  </header>
+  <div class='light x1'></div>
+  <div class='light x2'></div>
+  <div class='light x3'></div>
+  <div class='light x4'></div>
+  <div class='light x5'></div>
+  <div class='light x6'></div>
+  <div class='light x7'></div>
+  <div class='light x8'></div>
+  <div class='light x9'></div>
 
-  <main class="container">
+  <div class="container">
+
+    <header class="title">
+      <h1>Guess the number</h1>
+    </header>
+
     <form>
       <fieldset class="form-control">
         <div class="botMessage">
@@ -37,9 +48,7 @@
           <p>Let's play a <span>Guess my number</span> game!</p>
           <p class="parent"> Here are the rules.</p>
           <p class="rules">I'm thinking to a random number between 1 and 100. See if you can guess it in 10 turns
-            or
-            fewer. I'll tell
-            you if your guess was too high or too low.</p>
+            or fewer. I'll tell you if your guess was too high or too low.</p>
           <p>So, whenever you're ready to smash my mind, hit the Start button! o(*^▽^*)┛</p>
         </div>
 
@@ -59,22 +68,26 @@
           <p class="userAnswers"></p>
           <p class="warningMessage"></p>
           <p class="numberOfTurnsLeft"></p>
+          <p class="myRandomNumber"></p>
+          <p class="winnings"></p>
         </div>
+
+
+        <div class="buttonsArea d-none">
+          <button
+            type="submit"
+            class="submitButton btn btn-md btn-info"
+          >Try your guess</button>
+
+          <button
+            type="reset"
+            class="resetButton d-none btn btn-md btn-secondary"
+          >Start a new game</button>
+        </div>
+
       </fieldset>
-
-      <div class="buttonsArea d-none">
-        <button
-          type="submit"
-          class="submitButton btn btn-md btn-outline-info"
-        >Try your guess</button>
-
-        <button
-          type="reset"
-          class="resetButton d-none btn btn-md btn-outline-secondary"
-        >Start a new game</button>
-      </div>
     </form>
-  </main>
+  </div>
   <script src="
         app.js">
         </script>

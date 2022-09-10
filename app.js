@@ -9,55 +9,62 @@ const submitButton = document.querySelector('.submitButton');
 const inputArea = document.querySelector('#inputArea');
 const resultsMessages = document.querySelector('.resultsMessages');
 const parent = document.querySelector('.parent');
-let resetButton = document.querySelector('.resetButton');
-let userAnswers = document.querySelector('.userAnswers');
-let warningMessage = document.querySelector('.warningMessage');
-let replayGuess = document.querySelector('.replayGuess');
-let numberOfTurnsLeft = document.querySelector('.numberOfTurnsLeft');
+const resetButton = document.querySelector('.resetButton');
+const userAnswers = document.querySelector('.userAnswers');
+const warningMessage = document.querySelector('.warningMessage');
+const replayGuess = document.querySelector('.replayGuess');
+const numberOfTurnsLeft = document.querySelector('.numberOfTurnsLeft');
+const myRandomNumber = document.querySelector('.myRandomNumber');
+const rangeArea = document.querySelector('.rangeArea');
+const winnings = document.querySelector('.winnings');
 
 const startButton = document.createElement('button');
 let randomNumber = Math.floor(Math.random() * 100) + 1;
-let resetParagraphs = document.querySelectorAll('.resultsMessages p');
-let turns = 4;
+let turns = 0;
 let answers = [];
+let wins = 0;
 
 fieldset.append(startButton);
 
 startButton.type = 'button';
 startButton.innerText = 'Start';
 
-startButton.classList.add('btn', 'btn-md', 'btn-outline-success');
+startButton.classList.add('btn', 'btn-md', 'btn-success');
 
 startButton.addEventListener('click', function () {
   inputNumberArea.classList.remove('d-none');
   buttonsArea.classList.remove('d-none');
   startButton.classList.add('d-none');
+  botMessage.lastElementChild.classList.add('d-none');
 });
 
+//form event start -->
 form.addEventListener('submit', (e) => {
   let isDuplicate = false;
   e.preventDefault();
   let input = Number(document.getElementById('inputArea').value);
-  console.log(input);
 
-  if (input != '' && turns > 0 && (input > 0 || input < 101)) {
+  if (input != '' && turns < 5 && (input > 0 || input < 101)) {
     if (input === randomNumber) {
       replayGuess.innerText = "GREAT! That's the number I was thinking of.";
+      wins = wins + 1;
+
+      winnings.textContent = `You've read the MiniBot's mind for ${wins} times.`;
+
       setGameOver();
     } else if (input < randomNumber) {
-      replayGuess.innerText =
-        "Upsiii, that's not the number. The number I'm thinking of it's a bigger one.";
+      replayGuess.innerText = "The number I'm thinking of it's a bigger one.";
 
-      turns = turns - 1;
+      turns = turns + 1;
 
-      numberOfTurnsLeft.innerText = `You have ${turns + 1} turns left.`;
+      numberOfTurnsLeft.innerText = `You have ${5 - turns} turns left.`;
     } else if (input > randomNumber) {
       replayGuess.innerText =
         "Nope! The number I'm thinking of it's a smaller one.";
 
-      turns = turns - 1;
+      turns = turns + 1;
 
-      numberOfTurnsLeft.innerText = `You have ${turns + 1} turns left.`;
+      numberOfTurnsLeft.innerText = `You have ${5 - turns} turns left.`;
     }
 
     if (input !== randomNumber) {
@@ -83,13 +90,20 @@ form.addEventListener('submit', (e) => {
         userAnswers.textContent = `Previous guesses: ${answers.join()}`;
       }
     }
-  } else if (turns === 0) {
+  } else if (turns === 5) {
     numberOfTurnsLeft.innerText = `Sorry, but this time you're not into the mood of a Medium.`;
 
     setGameOver();
+
+    myRandomNumber.textContent = `My random number was ${randomNumber} ＞︿＜`;
+
+    userAnswers.innerText = '';
+    warningMessage.innerText = '';
+    replayGuess.innerText = '';
   }
   console.log(`your turns ${turns}`);
 });
+//<-- closing form event
 
 //--> Click HERE to see the rules code
 const onClick = (event) => {
@@ -115,20 +129,20 @@ if (rules.style.display === '') {
 function setGameOver() {
   inputArea.disabled = true;
   submitButton.disabled = true;
+  inputArea.value = '';
   resetButton.classList.remove('d-none');
   buttonsArea.append(resetButton);
   resetButton.addEventListener('click', resetGame);
 }
 
 function resetGame() {
-  turns = 4;
+  turns = 0;
   randomNumber = Math.floor(Math.random() * 100) + 1;
-
-  // resultsMessages.replaceChildren();
-  replayGuess.innerText = '';
+  numberOfTurnsLeft.innerText = '';
+  myRandomNumber.innerText = '';
   userAnswers.innerText = '';
   warningMessage.innerText = '';
-  numberOfTurnsLeft.innerText = '';
+  replayGuess.innerText = '';
   answers = [];
 
   inputArea.disabled = false;
@@ -137,6 +151,8 @@ function resetGame() {
   inputArea.focus();
 
   resetButton.parentElement.removeChild(resetButton);
+
+  console.log('Nr random este:' + randomNumber);
 }
 
 console.log('Nr random este:' + randomNumber);
