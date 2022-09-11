@@ -79,7 +79,6 @@ form.addEventListener('submit', (e) => {
           numberOfTurns - turns
         }</span> turns left.`;
         answers.push(input);
-        console.log(answers);
         userAnswers.innerHTML = `Previous guesses: <span>${answers.join()}</span>`;
       } else {
         answers.forEach(function (answerValue) {
@@ -98,7 +97,6 @@ form.addEventListener('submit', (e) => {
           warningMessage.innerText = '';
 
           answers.push(input);
-          console.log(answers);
         }
 
         userAnswers.innerHTML = `Previous guesses: <span>${answers.join()}</span>`;
@@ -117,7 +115,6 @@ form.addEventListener('submit', (e) => {
     inputNumberArea.style.display = 'none';
     numberOfTurnsArea.style.display = 'none';
   }
-  console.log(`your turns ${turns}`);
   userTurns.disabled = true;
 });
 //<-- closing form event
