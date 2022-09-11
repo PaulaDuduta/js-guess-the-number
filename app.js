@@ -162,7 +162,7 @@ function resetGame() {
   replayGuess.innerText = '';
   resultsMessages.style.display = '';
   inputNumberArea.style.display = '';
-  numberOfTurnsArea.style.display = '';
+  // numberOfTurnsArea.style.display = '';
 
   replayGuess.classList.remove('win');
   numberOfTurnsLeft.classList.remove('lose');
