@@ -35,21 +35,40 @@
   <div class='light x8'></div>
   <div class='light x9'></div>
 
-  <div class="container">
+  <div class="container wrapper">
 
     <header class="title">
       <h1>Guess the number</h1>
     </header>
 
     <form>
-      <fieldset class="form-control">
+      <fieldset class="form-control container">
         <div class="botMessage">
           <p>Hi! I'm MiniBot (●'◡'●)</p>
-          <p>Let's play a <span>Guess my number</span> game!</p>
+          <p>Can you guess the number I am thinking of?</p>
           <p class="parent"> Here are the rules.</p>
-          <p class="rules">I'm thinking to a random number between 1 and 100. See if you can guess it in 10 turns
+          <p class="rules">I'm thinking to a random number between 1 and 100. See if you can guess it in the number of
+            turns you passed
             or fewer. I'll tell you if your guess was too high or too low.</p>
           <p>So, whenever you're ready to smash my mind, hit the Start button! o(*^▽^*)┛</p>
+        </div>
+
+        <div class="turnsArea">
+          <div class="numberOfTurnsArea">
+            <label for="numberOfTurns">Number of turns: </label>
+            <input
+              type="number"
+              name="numberOfTurn"
+              id="numberOfTurns"
+              max="100"
+              min="1"
+              required
+            >
+          </div>
+
+          <div>
+            <p class="numberOfTurnsLeft"></p>
+          </div>
         </div>
 
         <div class="inputNumberArea d-none">
@@ -67,7 +86,6 @@
           <p class="replayGuess"></p>
           <p class="userAnswers"></p>
           <p class="warningMessage"></p>
-          <p class="numberOfTurnsLeft"></p>
           <p class="myRandomNumber"></p>
           <p class="winnings"></p>
         </div>

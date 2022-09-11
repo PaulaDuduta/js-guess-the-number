@@ -15,8 +15,8 @@ const warningMessage = document.querySelector('.warningMessage');
 const replayGuess = document.querySelector('.replayGuess');
 const numberOfTurnsLeft = document.querySelector('.numberOfTurnsLeft');
 const myRandomNumber = document.querySelector('.myRandomNumber');
-const rangeArea = document.querySelector('.rangeArea');
 const winnings = document.querySelector('.winnings');
+const userTurns = document.querySelector('#numberOfTurns');
 
 const startButton = document.createElement('button');
 let randomNumber = Math.floor(Math.random() * 100) + 1;
@@ -29,13 +29,18 @@ fieldset.append(startButton);
 startButton.type = 'button';
 startButton.innerText = 'Start';
 
-startButton.classList.add('btn', 'btn-md', 'btn-success');
+startButton.classList.add('btn', 'btn-md', 'btn-success', 'my-3');
 
 startButton.addEventListener('click', function () {
-  inputNumberArea.classList.remove('d-none');
-  buttonsArea.classList.remove('d-none');
-  startButton.classList.add('d-none');
-  botMessage.lastElementChild.classList.add('d-none');
+  userTurns.focus();
+  if (userTurns.value !== '') {
+    inputNumberArea.classList.remove('d-none');
+    buttonsArea.classList.remove('d-none');
+    startButton.classList.add('d-none');
+    botMessage.lastElementChild.classList.add('d-none');
+    userTurns.disabled = true;
+    rules.style.display = 'none';
+  }
 });
 
 //form event start -->
@@ -43,65 +48,67 @@ form.addEventListener('submit', (e) => {
   let isDuplicate = false;
   e.preventDefault();
   let input = Number(document.getElementById('inputArea').value);
+  let numberOfTurns = Number(document.getElementById('numberOfTurns').value);
 
-  if (input != '' && turns < 5 && (input > 0 || input < 101)) {
+  if (input != '' && turns < numberOfTurns && (input > 0 || input < 101)) {
     if (input === randomNumber) {
       replayGuess.innerText = "GREAT! That's the number I was thinking of.";
-      wins = wins + 1;
+      wins += 1;
 
-      winnings.textContent = `You've read the MiniBot's mind for ${wins} times.`;
+      winnings.textContent = `You've read MiniBot's mind for ${wins} times.`;
 
       setGameOver();
     } else if (input < randomNumber) {
       replayGuess.innerText = "The number I'm thinking of it's a bigger one.";
-
-      turns = turns + 1;
-
-      numberOfTurnsLeft.innerText = `You have ${5 - turns} turns left.`;
     } else if (input > randomNumber) {
       replayGuess.innerText =
         "Nope! The number I'm thinking of it's a smaller one.";
-
-      turns = turns + 1;
-
-      numberOfTurnsLeft.innerText = `You have ${5 - turns} turns left.`;
     }
 
     if (input !== randomNumber) {
       if (answers.length === 0) {
+        turns += 1;
+        numberOfTurnsLeft.innerText = `You have ${
+          numberOfTurns - turns
+        } turns left.`;
         answers.push(input);
         console.log(answers);
-        userAnswers.textContent = `Previous guesses: ${answers.join()}`;
+        userAnswers.innerHTML = `Previous guesses: <span>${answers.join()}</span>`;
       } else {
         answers.forEach(function (answerValue) {
           if (input === answerValue) {
             isDuplicate = true;
-            turns = turns + 1;
-            //DE VERIFICAT DE CE SCADE CU 1 ATUNCI CAND EXISTA UN DUPLICAT
           }
         });
 
         if (isDuplicate) {
           warningMessage.innerText = `You've already tried ${input}`;
         } else {
+          turns += 1;
+          numberOfTurnsLeft.innerText = `You have ${
+            numberOfTurns - turns
+          } turns left.`;
+          warningMessage.innerText = '';
+
           answers.push(input);
           console.log(answers);
         }
-        userAnswers.textContent = `Previous guesses: ${answers.join()}`;
+        userAnswers.innerHTML = `Previous guesses: <span>${answers.join()}</span>`;
       }
     }
-  } else if (turns === 5) {
-    numberOfTurnsLeft.innerText = `Sorry, but this time you're not into the mood of a Medium.`;
+  }
 
+  if (turns === numberOfTurns) {
+    numberOfTurnsLeft.innerText = `Sorry, you lost this time!`;
     setGameOver();
-
-    myRandomNumber.textContent = `My random number was ${randomNumber} ＞︿＜`;
+    myRandomNumber.innerHTML = `My random number was <span>${randomNumber}</span> ＞︿＜`;
 
     userAnswers.innerText = '';
     warningMessage.innerText = '';
     replayGuess.innerText = '';
   }
   console.log(`your turns ${turns}`);
+  userTurns.disabled = true;
 });
 //<-- closing form event
 
@@ -146,6 +153,7 @@ function resetGame() {
   answers = [];
 
   inputArea.disabled = false;
+  userTurns.disabled = false;
   submitButton.disabled = false;
   inputArea.value = '';
   inputArea.focus();
