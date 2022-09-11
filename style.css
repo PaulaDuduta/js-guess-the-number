@@ -178,8 +178,6 @@ body {
   /* background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); */
   font-family: 'Signika Negative';
   text-align: center;
-  line-height: 25px;
-  margin: 0;
   height: 100vh;
   font-weight: 100;
   background: radial-gradient(#65fdf0, #292828);
@@ -218,10 +216,16 @@ input[type='number']::-webkit-outer-spin-button {
   background-color: azure;
   border: 3px solid #1d6fa3;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 18px;
   box-shadow: #1d6fa3 0px 50px 100px -20px, #1d6fa3 0px 30px 60px -30px,
     #1d6fa3 0px -2px 6px 0px inset;
   margin: 0 auto;
+}
+
+@media (min-width: 500px) {
+  .form-control {
+    font-size: 20px;
+  }
 }
 
 .parent {
