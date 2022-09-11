@@ -34,7 +34,7 @@ startButton.classList.add('btn', 'btn-md', 'btn-success', 'my-3');
 
 startButton.addEventListener('click', function () {
   userTurns.focus();
-  if (userTurns.value !== '') {
+  if (userTurns.value !== '' && userTurns.value > 0 && userTurns.value < 101) {
     inputNumberArea.classList.remove('d-none');
     buttonsArea.classList.remove('d-none');
     startButton.classList.add('d-none');
@@ -162,7 +162,7 @@ function resetGame() {
   replayGuess.innerText = '';
   resultsMessages.style.display = '';
   inputNumberArea.style.display = '';
-  // numberOfTurnsArea.style.display = '';
+  numberOfTurnsArea.style.display = '';
 
   replayGuess.classList.remove('win');
   numberOfTurnsLeft.classList.remove('lose');
@@ -173,11 +173,9 @@ function resetGame() {
   userTurns.disabled = false;
   submitButton.disabled = false;
   inputArea.value = '';
+  userTurns.value = '';
+
   inputArea.focus();
 
   resetButton.parentElement.removeChild(resetButton);
-
-  console.log('Nr random este:' + randomNumber);
 }
-
-console.log('Nr random este:' + randomNumber);
