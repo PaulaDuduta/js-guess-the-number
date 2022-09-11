@@ -17,6 +17,8 @@ const numberOfTurnsLeft = document.querySelector('.numberOfTurnsLeft');
 const myRandomNumber = document.querySelector('.myRandomNumber');
 const winnings = document.querySelector('.winnings');
 const userTurns = document.querySelector('#numberOfTurns');
+const numberOfTurnsArea = document.querySelector('.numberOfTurnsArea');
+const turnsArea = document.querySelector('.turnsArea');
 
 const startButton = document.createElement('button');
 let randomNumber = Math.floor(Math.random() * 100) + 1;
@@ -28,7 +30,6 @@ fieldset.append(startButton);
 
 startButton.type = 'button';
 startButton.innerText = 'Start';
-
 startButton.classList.add('btn', 'btn-md', 'btn-success', 'my-3');
 
 startButton.addEventListener('click', function () {
@@ -52,10 +53,16 @@ form.addEventListener('submit', (e) => {
 
   if (input != '' && turns < numberOfTurns && (input > 0 || input < 101)) {
     if (input === randomNumber) {
+      replayGuess.classList.add('win');
+
       replayGuess.innerText = "GREAT! That's the number I was thinking of.";
       wins += 1;
 
       winnings.textContent = `You've read MiniBot's mind for ${wins} times.`;
+
+      // resultsMessages.style.display = 'none';
+      inputNumberArea.style.display = 'none';
+      turnsArea.style.display = 'none';
 
       setGameOver();
     } else if (input < randomNumber) {
@@ -68,9 +75,9 @@ form.addEventListener('submit', (e) => {
     if (input !== randomNumber) {
       if (answers.length === 0) {
         turns += 1;
-        numberOfTurnsLeft.innerText = `You have ${
+        numberOfTurnsLeft.innerHTML = `You have <span>${
           numberOfTurns - turns
-        } turns left.`;
+        }</span> turns left.`;
         answers.push(input);
         console.log(answers);
         userAnswers.innerHTML = `Previous guesses: <span>${answers.join()}</span>`;
@@ -85,27 +92,30 @@ form.addEventListener('submit', (e) => {
           warningMessage.innerText = `You've already tried ${input}`;
         } else {
           turns += 1;
-          numberOfTurnsLeft.innerText = `You have ${
+          numberOfTurnsLeft.innerHTML = `You have <span>${
             numberOfTurns - turns
-          } turns left.`;
+          }</span> turns left.`;
           warningMessage.innerText = '';
 
           answers.push(input);
           console.log(answers);
         }
+
         userAnswers.innerHTML = `Previous guesses: <span>${answers.join()}</span>`;
       }
     }
   }
 
   if (turns === numberOfTurns) {
+    numberOfTurnsLeft.classList.add('lose');
+
     numberOfTurnsLeft.innerText = `Sorry, you lost this time!`;
     setGameOver();
     myRandomNumber.innerHTML = `My random number was <span>${randomNumber}</span> ＞︿＜`;
 
-    userAnswers.innerText = '';
-    warningMessage.innerText = '';
-    replayGuess.innerText = '';
+    resultsMessages.style.display = 'none';
+    inputNumberArea.style.display = 'none';
+    numberOfTurnsArea.style.display = 'none';
   }
   console.log(`your turns ${turns}`);
   userTurns.disabled = true;
@@ -150,6 +160,13 @@ function resetGame() {
   userAnswers.innerText = '';
   warningMessage.innerText = '';
   replayGuess.innerText = '';
+  resultsMessages.style.display = '';
+  inputNumberArea.style.display = '';
+  numberOfTurnsArea.style.display = '';
+
+  replayGuess.classList.remove('win');
+  numberOfTurnsLeft.classList.remove('lose');
+
   answers = [];
 
   inputArea.disabled = false;

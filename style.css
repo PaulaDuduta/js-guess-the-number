@@ -270,8 +270,8 @@ input[type='number']::-webkit-outer-spin-button {
   border-radius: 5px;
 }
 
-.numberOfTurnsArea .numberOfTurnsLeft {
-  color: #cb1313;
+.numberOfTurnsLeft span {
+  color: #cb7513;
 }
 
 #inputArea {
@@ -292,12 +292,27 @@ input[type='number']::-webkit-outer-spin-button {
 
 .resultsMessages .warningMessage {
   color: #cb1313;
+}
+
+.winningMessages .myRandomNumber span {
+  color: #139a56;
   font-weight: 700;
 }
 
-.resultsMessages .myRandomNumber span {
+.winningMessages .winnings {
+  font-style: italic;
+}
+
+.win {
   color: #139a56;
   font-weight: 700;
+  font-size: 26px;
+}
+
+.lose {
+  color: #b70c0c;
+  font-weight: 700;
+  font-size: 26px;
 }
 
 .buttonsArea {
