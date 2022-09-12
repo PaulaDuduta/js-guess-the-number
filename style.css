@@ -177,7 +177,6 @@ table {
 body {
   /* background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); */
   font-family: 'Signika Negative';
-  text-align: center;
   height: 100vh;
   font-weight: 100;
   background: radial-gradient(#65fdf0, #292828);
@@ -219,7 +218,10 @@ input[type='number']::-webkit-outer-spin-button {
   font-size: 18px;
   box-shadow: #1d6fa3 0px 50px 100px -20px, #1d6fa3 0px 30px 60px -30px,
     #1d6fa3 0px -2px 6px 0px inset;
-  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
 }
 
 @media (min-width: 500px) {
@@ -236,33 +238,74 @@ input[type='number']::-webkit-outer-spin-button {
 .botMessage {
   margin: 10px 0 10px 0;
   display: flex;
+  justify-content: space-between;
+  align-items: start;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+}
+
+.botMessage .rules {
+  margin: 10px 0;
+}
+
+@media (min-width: 500px) {
+  .botMessage {
+    align-items: center;
+  }
+
+  .botMessage p:last-child {
+    text-align: center;
+  }
+
+  .botMessage .rules {
+    text-align: justify;
+  }
 }
 
 .turnsArea {
   display: flex;
+  justify-content: space-between;
+  align-items: start;
   flex-direction: column;
-  justify-content: center;
-  text-align: center;
+  margin: 10px 0 10px 0;
+  width: 198px;
+}
+
+@media (min-width: 700px) {
+  .turnsArea {
+    flex-direction: row;
+    line-height: 55px;
+    width: auto;
+    gap: 40px;
+  }
 }
 
 @media (min-width: 500px) {
-  .turnsArea {
-    flex-direction: row;
-    gap: 40px;
-    line-height: 55px;
+  .numberOfTurnsArea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 
 .inputNumberArea {
-  margin: 15px 0 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
 }
 
-.resultMessages {
-  margin: 10px 0 10px 0;
-  line-height: 35px;
+@media (min-width: 500px) {
+  .inputNumberArea {
+    margin: 10px 0;
+  }
+}
+
+@media (min-width: 500px) {
+  .resultsMessages {
+    margin: 10px 0;
+    line-height: 35px;
+    text-align: center;
+  }
 }
 
 #numberOfTurns {
@@ -281,12 +324,16 @@ input[type='number']::-webkit-outer-spin-button {
 #inputArea {
   text-align: center;
   width: 50px;
-  font-size: 25px;
+  font-size: 22px;
   /* color: #0e5cad;*/
   color: #1d6fa3;
   border: 0.5px solid;
   border-radius: 5px;
   margin-left: 5px;
+}
+
+.resultsMessages .userAnswers {
+  margin: 15px 0;
 }
 
 .resultsMessages .userAnswers span {
@@ -301,6 +348,7 @@ input[type='number']::-webkit-outer-spin-button {
 .winningMessages .myRandomNumber span {
   color: #139a56;
   font-weight: 700;
+  font-size: 22px;
 }
 
 .winningMessages .winnings {
@@ -320,11 +368,11 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .buttonsArea {
-  margin: 10px 0 10px 0;
+  margin: 20px 0;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  flex-direction: column;
   gap: 15px;
 }
 
@@ -335,6 +383,19 @@ input[type='number']::-webkit-outer-spin-button {
 
   .buttonsArea .submitButton {
     margin-left: 10px;
+    width: 200px;
+    font-size: 20px;
+  }
+
+  .buttonsArea .resetButton {
+    width: 200px;
+    font-size: 20px;
+    font-weight: 300;
+  }
+
+  .startButton {
+    width: 200px;
+    font-size: 20px;
   }
 }
 

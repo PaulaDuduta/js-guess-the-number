@@ -30,7 +30,13 @@ fieldset.append(startButton);
 
 startButton.type = 'button';
 startButton.innerText = 'Start';
-startButton.classList.add('btn', 'btn-md', 'btn-success', 'my-3');
+startButton.classList.add(
+  'startButton',
+  'btn',
+  'btn-md',
+  'btn-success',
+  'my-3',
+);
 
 startButton.addEventListener('click', function () {
   userTurns.focus();
@@ -172,7 +178,7 @@ function resetGame() {
   inputArea.value = '';
   userTurns.value = '';
 
-  inputArea.focus();
+  userTurns.focus();
 
   resetButton.parentElement.removeChild(resetButton);
 }
