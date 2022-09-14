@@ -122,6 +122,8 @@ form.addEventListener('submit', (e) => {
     numberOfTurnsArea.style.display = 'none';
   }
   userTurns.disabled = true;
+  inputArea.value = '';
+  inputArea.focus();
 });
 //<-- closing form event
 
