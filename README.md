@@ -2,7 +2,7 @@
 
 ## Overview
 
-This was the third personal project to make for the Pixellab's Frontend Web Development course, that I attended. It represented a browser game for two resolutions (desktop and mobile devices). This project was entirely implemented using Vanilla JavaScript programming language and Netlify to publish it online (https://legendary-dodol-ee81d1.netlify.app).
+This was the third personal project to make for the Pixellab's Frontend Web Development course, that I attended. It represents a browser game for two resolutions (desktop and mobile devices). This project was entirely implemented using Vanilla JavaScript programming language and Netlify to publish it online (https://legendary-dodol-ee81d1.netlify.app).
 The website design was realized by me.
 
 ### The challenge
@@ -10,11 +10,11 @@ The website design was realized by me.
 Users should be able to:
 
 - View the optimal layout depending on their device's screen size.
-- To start the game by clicking the "Start" button.
-- To enter the desired number of turns.
-- To insert some inputs.
-- To receive intuitive messages to help them guess the number.
-- To receive a win/lose message.
+- Start the game by clicking the "Start" button.
+- Enter the desired number of turns.
+- Insert some inputs.
+- Receive intuitive messages to help them guess the number.
+- Receive a win/lose message.
 
 ### Screenshot
 
